@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from tipa_telegram import settings
+from messanger import settings
 
 
 class User(AbstractUser):
