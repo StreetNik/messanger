@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+  <div class="content">
+    {% if chat %}
+      <div class="content-info">
+        <div class="chat-logo">
+          <img src="{% static "icons/img_grey.png" %}" alt="">
+        </div>
+        <div class="chat-info-content">
+          <div class="content-chat-title">
+            {{ chat.title }}
+          </div>
+          <div class="content-chat-users-count">
+            {{ chat.users.count }} users
+          </div>
+        </div>
+        <div class="content-more-btn">
+          <img src="{% static "icons/menu.png" %}" alt="">
+        </div>
+      </div>
+
+      <div class="content-block" id="messages">
+          {% if messages %}
+            {% for message in messages %}
+              {% if message.author == user %}
+                  <div class="message right">
+                    {{ message.content }}
+                    <p class="message-time">{{ message.send_time.time }}</p>
+                  </div>
+              {% else %}
+                <div class="message">
+                  <div class="author">
+                    {{ message.author.username }}
+                  </div>
+                  <div>
+                    <p>{{ message.content }}</p>
+                    <p class="message-time">{{ message.send_time.time }}</p>
+                  </div>
+                </div>
+              {% endif %}
+
+            {% endfor %}
+
+
+          {% endif %}
+      </div>
+
+      <form class="new-message-container" id="form">
+          {% csrf_token %}
+          <div class="write-message">
+            <input type="hidden" value="{{ chat.id }}" name="chat">
+            <input type="hidden" value="{{ user.id }}" name="author">
+            {{ send_message_form }}
+          </div>
+          <button type="submit" class="submit-btn">
+            <img src="{% static "icons/paper-plane.svg" %}" alt="">
+          </button>
+        </form>
+    {% endif %}
+  </div>
+  {{ chat.id|json_script:"chat_id" }}
+  {{ user.id|json_script:"user_id" }}
+  <script src="{% static "js/script.js" %}" defer></script>
+{% endblock %}
