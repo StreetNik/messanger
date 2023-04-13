@@ -96,12 +96,11 @@ SideBarSocket.onmessage = function(e){
 
       if (data["users"].includes(userId)){
           let url_img = "/static/icons/img_grey.png";
-          console.log("Hello")
           let sidebar_block = document.querySelector(".side-bar-content")
           sidebar_block.insertAdjacentHTML(
               "afterbegin",
               `
-              <div onclick="#" class="chat" id="${data.id}">
+              <div onclick="#" class="chat" id="${data.chat_id}">
         <div class="chat-img">
           <img src="${url_img}" alt="">
         </div>
