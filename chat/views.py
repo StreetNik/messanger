@@ -4,19 +4,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from django.shortcuts import redirect
+from django.views.generic import TemplateView
 
 from chat.forms import SearchFieldForm, SendMessageForm, ChatForm
 from chat.models import User, Message, Chat
 
 
-class MessageCreateView(generic.CreateView, LoginRequiredMixin):
-    model = Message
-    fields = "__all__"
+class MainPageView(TemplateView, LoginRequiredMixin):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         username = self.request.user.username
-        context = super(MessageCreateView, self).get_context_data(**kwargs)
+        context = super(MainPageView, self).get_context_data(**kwargs)
         context["chats"] = Chat.objects.filter(users=User.objects.get(username=username))
         context["search_form"] = SearchFieldForm
         context["send_message_form"] = SendMessageForm
