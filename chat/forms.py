@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.forms import SelectMultiple
 
@@ -51,3 +52,7 @@ class ChatForm(forms.ModelForm):
         widget=SelectMultiple(attrs={'class': 'hide-select-box'})
     )
 
+
+class UserCreationForm(UserCreationForm):
+    model = User
+    fields = UserCreationForm.Meta.fields
