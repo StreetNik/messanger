@@ -1,6 +1,7 @@
 const userId = JSON.parse(document.getElementById('user_id').textContent);
 const roomName = JSON.parse(document.getElementById('chat_id').textContent);
 const chatId = roomName
+let menu_open = false;
 
 function DisplayCurrentTime() {
       let date = new Date();
@@ -135,7 +136,9 @@ SideBarSocket.onmessage = function(e){
   let parent = chat_block.parentNode;
   parent.insertBefore(chat_block, parent.firstChild);
   }
-
 }
 
-
+function menuOpen() {
+    menu_open = !menu_open
+    document.getElementById("menu").style.display = menu_open ? "block" : "none";
+}

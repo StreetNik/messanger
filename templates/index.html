@@ -2,15 +2,16 @@
 {% load static %}
 
 
-
+{% block style %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
 
 {% block content %}
   <div class="side-bar">
   <div class="side-bar-top-section">
     <div class="more-btn">
-      <a href="#menu">
-        <img src="{% static "icons/menu.png" %}" alt="menu-btn">
-      </a>
+      <img onclick="menuOpen()" src="{% static "icons/menu.png" %}" alt="menu-btn">
     </div>
     <div class="search-field">
       <div class="search-field-container">
@@ -25,9 +26,13 @@
       </div>
     </div>
   </div>
+
   <div class="side-bar-content">
   <div class="menu" id="menu">
-    <button><a href="{% url "logout" %}">Logout</a></button>
+    <div class="menu-element">
+      <i class="fa fa-sign-out"></i>
+      <a href="{% url "logout" %}">Logout</a>
+    </div>
   </div>
     <button onclick="window.location.href = {% url "chat-create" %}" class="new_group">&#9998;</button>
     {% for chat in chats %}

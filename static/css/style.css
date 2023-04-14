@@ -18,15 +18,34 @@ body {
 }
 
 .menu {
-    width: 70px;
-    height: 25px;
-    background-color: #fff;
-    transform: translateY(-100%);
-    transition: transform 0.5s;
-    position: fixed;
-    left: 0;
-    top: 60px;
-    opacity: 0.5;
+    display: none;
+    position: absolute;
+    left: 15px;
+    top: 0;
+    background-color: #181818;
+    border-radius: 15px;
+    width: 260px;
+    padding: 0 10px;
+    /*height: 20px;*/
+}
+
+.menu-element {
+    border-radius: 15px;
+    margin: 5px 0;
+}
+
+.menu-element a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-element:hover {
+    background-color: #212121;
+}
+
+.menu i {
+    margin: 5px 10px;
+    color: #fff;
 }
 
 #menu:target {
@@ -54,7 +73,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 56px;
-
+    cursor: pointer;
 }
 
 .more-btn img {
