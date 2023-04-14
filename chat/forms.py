@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from django.forms import SelectMultiple
+from django.forms import SelectMultiple, EmailField
 
 from chat.models import Chat, User
 
@@ -54,5 +54,14 @@ class ChatForm(forms.ModelForm):
 
 
 class UserCreationForm(UserCreationForm):
-    model = User
-    fields = UserCreationForm.Meta.fields
+    email = EmailField(label=("Email address"), required=True)
+
+    class Meta(UserCreationForm.Meta):
+        fields = UserCreationForm.Meta.fields + ("email",)
+        model = User
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
