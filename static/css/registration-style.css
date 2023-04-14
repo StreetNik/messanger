@@ -9,6 +9,7 @@
 	 -moz-background-size: cover;
 	 -o-background-size: cover;
 	 background-size: cover;
+	 background-image: url("../icons/chat-bg.png");
 }
  .log-form {
 	 width: 40%;
