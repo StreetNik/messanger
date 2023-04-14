@@ -101,7 +101,7 @@ SideBarSocket.onmessage = function(e){
           sidebar_block.insertAdjacentHTML(
               "afterbegin",
               `
-              <div onclick="#" class="chat" id="${data.chat_id}">
+              <div onclick="location.href='/${data.chat_id}/';" class="chat" id="${data.chat_id}">
         <div class="chat-img">
           <img src="${url_img}" alt="">
         </div>
