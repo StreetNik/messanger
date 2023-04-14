@@ -1,12 +1,12 @@
 from django.views import generic
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
-from chat.forms import SearchFieldForm, SendMessageForm, ChatForm
+from chat.forms import SearchFieldForm, SendMessageForm, ChatForm, UserCreationForm
 from chat.models import User, Message, Chat
 
 
@@ -58,3 +58,10 @@ class ChatCreateView(generic.CreateView, LoginRequiredMixin):
         context["search_form"] = SearchFieldForm
 
         return context
+
+
+class RegistrationPageView(generic.CreateView):
+    template_name = "registration/registration.html"
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
