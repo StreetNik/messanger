@@ -20,10 +20,11 @@ for (let user of sidebar_users_div) {
   });
 }
 
-function select_ids(){
+function select_ids() {
   let users = document.querySelectorAll(".users-block-items");
   let select_block = document.getElementById("id_users");
-  user_ids = []
+  user_ids = [];
+
   for (let user of users) {
     user_ids.push(parseInt(user.id));
   }
@@ -33,8 +34,8 @@ function select_ids(){
 
     if (user_ids.includes(optionValue) || logged_in_user_id === optionValue) {
       select_block.options[i].selected = true;
-    }else{
-      select_block.options[i].selected = false
+    } else {
+      select_block.options[i].selected = false;
     }
   }
 }

@@ -22,11 +22,7 @@
   <form method="POST" id="form" class="create-chat-form" action="">
       {% csrf_token %}
       {{ form.as_p }}
-      <div class="users-block">
-
-      </div>
-{#      <input type="hidden" title="users" id="users_ids">#}
-
+      <div class="users-block"></div>
       <input id="submit" type="submit" class="create-chat-btn" value="Create new chat">
   </form>
   </div>
