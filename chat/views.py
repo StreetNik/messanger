@@ -15,8 +15,11 @@ class MainPageView(TemplateView, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         username = self.request.user.username
+        title = self.request.GET.get("title")
         context = super(MainPageView, self).get_context_data(**kwargs)
         context["chats"] = Chat.objects.filter(users=User.objects.get(username=username))
+        if title:
+            context["chats"] = context["chats"].filter(title__icontains=title)
         context["search_form"] = SearchFieldForm
         context["send_message_form"] = SendMessageForm
         if self.kwargs.get("pk"):
