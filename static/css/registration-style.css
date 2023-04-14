@@ -105,3 +105,9 @@
  .log-form .forgot:hover {
 	 color: #1ba0a9;
 }
+
+ .create-new-account-btn {
+	 color: #1ba0a9;
+	 text-decoration: none;
+	 float: right;
+ }
