@@ -27,7 +27,7 @@
   </div>
   <div class="side-bar-content">
   <div class="menu" id="menu">
-    <button>Logout</button>
+    <button><a href="{% url "logout" %}">Logout</a></button>
   </div>
     <button onclick="window.location.href = {% url "chat-create" %}" class="new_group">&#9998;</button>
     {% for chat in chats %}
