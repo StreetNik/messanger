@@ -14,6 +14,23 @@ body {
     color: #ffffff;
     height: 100%;
     width: 100%;
+    background-image: url("../icons/chat-bg.png");
+}
+
+.menu {
+    width: 70px;
+    height: 25px;
+    background-color: #fff;
+    transform: translateY(-100%);
+    transition: transform 0.5s;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    opacity: 0.5;
+}
+
+#menu:target {
+    transform: translateY(0);
 }
 
 .side-bar {
@@ -224,7 +241,6 @@ body {
     flex-direction: column;
     height: 83.5vh;
     overflow: auto;
-    /*padding-bottom: 50px;*/
     padding: 0 120px 50px;
 }
 
