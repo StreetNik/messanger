@@ -12,6 +12,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn">Register</button>
+    <a class="create-new-account-btn" href="{% url "login" %}">Login</a>
   </form>
 </div>
 {% endblock %}
