@@ -51,7 +51,7 @@ chatSocket.onmessage = function (e) {
         `
               <div class="message">
                 <div class="author">
-                  ${data.author_username};
+                  ${data.author_username}
                 </div>
                 <div>
                   <p>${data.message} </p>
