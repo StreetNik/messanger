@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import psycopg2
 from django.urls import reverse_lazy, reverse
 
 import environ
+
+import dj_database_url
 
 
 # Initialise environment variables
@@ -64,6 +67,7 @@ CHANNEL_LAYERS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -104,6 +108,26 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'oxaonyps',
+#         'USER': 'oxaonyps',
+#         'HOST': 'batyr.db.elephantsql.com',
+#         'PASSWORD': 'qPpX3xgpjp4jHfQG8IYyns0NdzO6X5CB',
+#         'PORT': '5432',
+#         'OPTIONS': {
+#             'client_encoding': 'UTF8',
+#             'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
+#         },
+#     }
+# }
+
+
+# dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
 
 
 # Password validation
@@ -146,6 +170,8 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = "staticfiles/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
