@@ -109,21 +109,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'oxaonyps',
-#         'USER': 'oxaonyps',
-#         'HOST': 'batyr.db.elephantsql.com',
-#         'PASSWORD': 'qPpX3xgpjp4jHfQG8IYyns0NdzO6X5CB',
-#         'PORT': '5432',
-#         'OPTIONS': {
-#             'client_encoding': 'UTF8',
-#             'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
-#         },
-#     }
-# }
-
 
 # dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
