@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static "css/registration-style.css" %}">
+{% endblock %}
+
+{% block title %}
+  <title>Sign Up | Messanger</title>
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block content %}
+<div class="log-form">
+  <h2>Create new account</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Register</button>
+    <a class="create-new-account-btn" href="{% url "login" %}">Login</a>
+  </form>
+</div>
+{% endblock %}

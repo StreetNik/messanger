@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block sidebar_content %}
+  {% for chat_user in users %}
+    {% if chat_user.id != user.id %}
+      <div class="users-list" id="{{ chat_user.id }}">
+        <div class="chat-img">
+          <img src="{% static "icons/img_grey.png" %}" alt="">
+        </div>
+        <div class="user-info">
+          <h2>{{ chat_user.username }}</h2>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+
+{% block content %}
+  <div class="create-chat-content">
+  <form method="POST" id="form" class="create-chat-form" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="users-block"></div>
+      <input id="submit" type="submit" class="create-chat-btn" value="Create new chat">
+  </form>
+  </div>
+  {{ user.id|json_script:"user_id" }}
+  <script src="{% static "js/chat-create-script.js" %}"></script>
+{% endblock %}
