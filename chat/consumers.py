@@ -1,6 +1,7 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 from chat.models import Message, User
 
@@ -11,7 +12,8 @@ class ChatConsumer(WebsocketConsumer):
         self.room_group_name = "chat_%s" % self.room_name
 
         # Join room group
-        async_to_sync(self.channel_layer.group_add)(
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_add)(
             self.room_group_name, self.channel_name
         )
 
@@ -28,7 +30,8 @@ class ChatConsumer(WebsocketConsumer):
 
         print("message:", message, "author_id:", author_id, "chat_id:", chat_id)
 
-        async_to_sync(self.channel_layer.group_send)(
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
             self.room_group_name,
             {
                 "type": "chat_message",
@@ -52,9 +55,11 @@ class ChatConsumer(WebsocketConsumer):
             "author_username": author_username
         }))
 
-    def disconnect(self, code):
-        async_to_sync(self.channel_layer.group_discard)(
-            self.room_group_name, self.channel_name
+    def disconnect(self, close_code):
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_discard)(
+            self.room_group_name,
+            self.channel_name
         )
 
 
@@ -62,6 +67,8 @@ class SideBarConsumer(WebsocketConsumer):
     def connect(self):
         self.room_name = "test"
         self.room_group_name = "all_users"
+
+        self.channel_layer = get_channel_layer()
 
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name, self.channel_name
@@ -100,7 +107,8 @@ class SideBarConsumer(WebsocketConsumer):
         type = "new-chat"
         self.send(text_data=json.dumps({"type": type, "users": users, "chat_id": id, "title": title}))
 
-    def disconnect(self, code):
+    def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
-            self.room_group_name, self.channel_name
+            self.room_group_name,
+            self.channel_name
         )
