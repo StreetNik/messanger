@@ -28,4 +28,10 @@ python manage.py runserver #Start Django Server
 
 ## Demo
 
+You can login using demo user:
+
+* username: tempacc
+
+* password: TempPass2004
+
 ![Website interface](demo.png)
