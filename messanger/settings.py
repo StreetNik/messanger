@@ -34,6 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
+REDIS_URL = env("REDIS_URL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django_extensions',
+    "django_extensions",
     "chat",
 ]
 
@@ -63,11 +64,10 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get("REDIS_URL", "rediss://red-ch2ohetgk4qarqic4gk0:jUGJeWh7k9W9c2Cu6lAQQQXxBFPxx1Ae@oregon-redis.render.com:6379")],
+            "hosts": [(REDIS_URL)],
         },
     },
 }
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
