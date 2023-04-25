@@ -45,6 +45,7 @@ ALLOWED_HOSTS = ["127.0.0.1", "messanger-zj2b.onrender.com"]
 
 INSTALLED_APPS = [
     "channels",
+    "daphne",
     "channels_redis",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -66,6 +67,7 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
