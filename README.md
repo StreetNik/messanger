@@ -4,7 +4,7 @@ Django project for communication between pople in real time.
 
 ## Check it out!
 
-[Messanger project deployed on ]()
+[Messanger project deployed on Render](https://messanger-zj2b.onrender.com)
 
 ## Installation
 
