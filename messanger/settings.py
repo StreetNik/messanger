@@ -45,8 +45,7 @@ ALLOWED_HOSTS = ["127.0.0.1", "messanger-zj2b.onrender.com"]
 
 INSTALLED_APPS = [
     "channels",
-    "chat",
-    "daphne",
+    "channels_redis",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,6 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django_extensions',
+    "chat",
 ]
 
 ASGI_APPLICATION = "messanger.asgi.application"
@@ -62,7 +62,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get("REDIS_URL", "redis://red-ch2ohetgk4qarqic4gk0:6379")],
+            "hosts": [os.environ.get("REDIS_URL", "rediss://red-ch2ohetgk4qarqic4gk0:jUGJeWh7k9W9c2Cu6lAQQQXxBFPxx1Ae@oregon-redis.render.com:6379")],
         },
     },
 }

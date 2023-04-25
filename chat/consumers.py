@@ -70,7 +70,8 @@ class SideBarConsumer(WebsocketConsumer):
 
         self.channel_layer = get_channel_layer()
 
-        async_to_sync(self.channel_layer.group_add)(
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_add)(
             self.room_group_name, self.channel_name
         )
 
@@ -81,7 +82,8 @@ class SideBarConsumer(WebsocketConsumer):
         message = text_data_json["message"]
         chat_id = text_data_json["chat"]
 
-        async_to_sync(self.channel_layer.group_send)(
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
             self.room_group_name,
             {
                 "type": "chat_message",
@@ -108,7 +110,8 @@ class SideBarConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({"type": type, "users": users, "chat_id": id, "title": title}))
 
     def disconnect(self, close_code):
-        async_to_sync(self.channel_layer.group_discard)(
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_discard)(
             self.room_group_name,
             self.channel_name
         )

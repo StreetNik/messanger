@@ -24,11 +24,19 @@ const chatSocket = new WebSocket(
   '/'
 );
 
+chatSocket.onopen = function (e){
+  console.log("Connected")
+}
+
 const SideBarSocket = new WebSocket(
   'ws://' +
   window.location.host +
   '/ws/'
 );
+
+SideBarSocket.onclose = function (e) {
+  console.error("Closed error")
+}
 
 chatSocket.onmessage = function (e) {
   let data = JSON.parse(e.data);
