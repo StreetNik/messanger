@@ -8,5 +8,5 @@ urlpatterns = [
     path("", MainPageView.as_view(), name="home"),
     path("<int:pk>/", MainPageView.as_view(), name="chat"),
     path("create-new-chat/", ChatCreateView.as_view(), name="chat-create"),
-    path("registration/", RegistrationPageView.as_view(), name="registration")
+    path("registration/", RegistrationPageView.as_view(), name="registration"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -17,19 +17,20 @@ document.getElementById(chatId).classList.toggle("chat-main");
 
 // Web Sockets
 const chatSocket = new WebSocket(
-  'wss://' +
+  'ws://' +
   window.location.host +
   '/ws/' +
   roomName +
   '/'
 );
 
+
 chatSocket.onopen = function (e){
   console.log("Connected")
 }
 
 const SideBarSocket = new WebSocket(
-  'wss://' +
+  'ws://' +
   window.location.host +
   '/ws/'
 );
