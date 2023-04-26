@@ -34,6 +34,7 @@ media
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
+.idea
 
 # File-based project format
 *.iws
@@ -136,5 +137,5 @@ GitHub.sublime-settings
 .history
 
 db.sqlite3
-
+.DS_Store
 .env
